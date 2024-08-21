@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>TODO</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: rgb(255, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<header class="container text-center bg-light mt-3">
+   <h2>AsadUllah's ToDo List</h2>
+</header>
+<main class="container col-6 mt-5">
+    <div class="input-group">
+        <input id="task_input" type="text" class="form-control" placeholder="Input Task Here">
+        <div class="input-group-append">
+          <button id="add_btn" class="btn btn-outline-success" type="button">Add Task</button>
+        </div>
+      </div>
+      <ul id="ultagparent" class="list-group">
+
+      </ul>
+</main>
+
+<script>
+    let addbtn=document.getElementById('add_btn')
+    addbtn.addEventListener('click',clickbtn);
+
+    function clickbtn(){
+        let inputsec=document.getElementById('task_input')
+
+        let newLi=document.createElement('li');
+        newLi.classList.add('list-group-item', 'd-flex', 'align-items-center')
+
+        let checkbox=document.createElement('input')
+        checkbox.type='checkbox';
+        checkbox.classList.add('mr-3')
+        checkbox.addEventListener('click',checkboxclick)
+
+        let label=document.createElement('label')
+        label.classList.add('flex-grow-1')
+        label.textContent=inputsec.value;
+
+        newLi.appendChild(checkbox)
+        newLi.appendChild(label)
+
+        let ultag=document.getElementById('ultagparent')
+        ultag.appendChild(newLi)
+
+        inputsec.value='';
+
+        function checkboxclick(event){
+            let taskitem=event.target.nextElementSibling;
+            taskitem.classList.toggle('completed');
+        }
+    }
+</script>
+</body>
+</html>
